@@ -27,14 +27,18 @@ public class Player : MonoBehaviour {
         respawnActive = false;
     }
 
-    void OnFoundClearArea() {
+    void OnFoundClearArea(Vector3 foundPosition) {
         Debug.Log("Clear area found by " + name);
-        landingZonePosition = transform.position;           //save position immediately in case player keeps moving
+        landingZonePosition = foundPosition;        //save position immediately in case player keeps moving
         Invoke("DropFlare", 3f);
     }
     void DropFlare() {
         Debug.Log("Deploy flare");
         Instantiate(landingZonePrefab, landingZonePosition, Quaternion.identity);
-    }           
+    }
+
+    void OnMakeInitialHeliCall() {
+        SendMessageUpwards("OnMakeHeliCall", landingZonePosition);      //call radio for Heli
+    }          
 
 }

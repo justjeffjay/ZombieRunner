@@ -23,7 +23,7 @@ public class InnerVoice : MonoBehaviour {
         Invoke("CallHeli", clearArea.length + 1f);
     }
     void CallHeli() {
-        SendMessageUpwards("OnMakeInitialHeliCall");
+        SendMessageUpwards("OnMakeInitialHeliCall");        //tell Player to make call
     }
 
 }

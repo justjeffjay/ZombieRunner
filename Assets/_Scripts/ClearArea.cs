@@ -19,7 +19,7 @@ public class ClearArea : MonoBehaviour {
         if (!areaIsClear && IsAreaClear() && (Time.timeSinceLevelLoad > 10f)) {     //TODO HACK don't trigger in first 10s
             Debug.Log("Found Clear Area");
             areaIsClear = true;
-            SendMessageUpwards("OnFoundClearArea");
+            SendMessageUpwards("OnFoundClearArea", transform.position);             //tell InnerVoice and Player found spot
         }
 	}
 
