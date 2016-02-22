@@ -13,7 +13,11 @@ public class RadioSystem : MonoBehaviour {
 	void Start () {
         audioSource = GetComponent<AudioSource>();
 	}
-	
+
+    void OnPlayerCallsForHeli() {
+        BroadcastMessage("OnPlayerCalledForHeli");
+    }
+
     void OnMakeHeliCall(Vector3 foundPosition) {
         audioSource.clip = heliCall;
         audioSource.Play();

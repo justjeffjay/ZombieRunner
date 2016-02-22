@@ -7,7 +7,6 @@ public class Player : MonoBehaviour {
     public GameObject landingZonePrefab;
 
     private Transform[] spawnPoints;
-    private Vector3 landingZonePosition;
 
     // Use this for initialization
     void Start() {
@@ -27,18 +26,12 @@ public class Player : MonoBehaviour {
         respawnActive = false;
     }
 
-    void OnFoundClearArea(Vector3 foundPosition) {
-        Debug.Log("Clear area found by " + name);
-        landingZonePosition = foundPosition;        //save position immediately in case player keeps moving
-        Invoke("DropFlare", 3f);
+    void OnMakeInitialHeliCall(Vector3 foundPosition) {
+        DropFlare(foundPosition);
+        SendMessageUpwards("OnMakeHeliCall", foundPosition);      //call radio for Heli
     }
-    void DropFlare() {
-        Debug.Log("Deploy flare");
-        Instantiate(landingZonePrefab, landingZonePosition, Quaternion.identity);
+    void DropFlare(Vector3 foundPosition) {
+        Instantiate(landingZonePrefab, foundPosition, Quaternion.identity);
     }
-
-    void OnMakeInitialHeliCall() {
-        SendMessageUpwards("OnMakeHeliCall", landingZonePosition);      //call radio for Heli
-    }          
 
 }

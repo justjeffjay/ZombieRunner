@@ -16,14 +16,8 @@ public class InnerVoice : MonoBehaviour {
 	}
 	
     void OnFoundClearArea() {
-        Debug.Log("Clear area found by " + name);
         audioSource.clip = clearArea;
         audioSource.Play();
-
-        Invoke("CallHeli", clearArea.length + 1f);
-    }
-    void CallHeli() {
-        SendMessageUpwards("OnMakeInitialHeliCall");        //tell Player to make call
     }
 
 }
